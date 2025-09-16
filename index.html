@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <!-- Import tailwind css -->
@@ -62,28 +62,56 @@
         <!-- Project Updates page -->
         <script>
             const updatesContent = `
-                <p>9/11/2025: Initialized dashboard and inventory system</p>
+                <h1 class="text-2xl font-bold">9/11/2025: Initialized dashboard and inventory system</h1>
+                <p>I used </p>
             `;
             const updatesPreview = "9/11/2025: Initialized dashboard and inventory system";
         </script>
-        <div onclick="openModal('Project Updates', '<p>9/11/2025: Initialized dashboard and inventory system</p>')" class="bg-white p-6 rounded-lg shadow-md border w-full sm:w-2/3 md:w-1/2 lg:w-1/3 cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
+        <div onclick="openModal('Project Updates', updatesContent)" class="bg-white p-6 rounded-lg shadow-md border w-full sm:w-2/3 md:w-1/2 lg:w-1/3 cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
             <h1 class="text-2xl font-bold mb-4">Project Updates</h1>
+            <p class="line-clamp-3">
+                <script>document.write(updatesPreview);</script>
+            </p>
         </div>
 
         <!-- Deliverables page -->
-        <div onclick="openModal('Deliverables', '9/11/2025: <img src=&quot;src/dashboard.png&quot; class=&quot;w-full mb-4&quot;> <img src=&quot;src/inventory.png&quot; class=&quot;w-full mb-4&quot;>')" class="bg-white p-6 rounded-lg shadow-md border w-full sm:w-2/3 md:w-1/2 lg:w-1/3 cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
+        <script>
+            const deliverablesContent = `
+                <p>9/11/2025:</p>
+                <img src="src/dashboard.png" class="w-full mb-4">
+                <img src="src/inventory.png" class="w-full mb-4">
+            `;
+            const deliverablesPreview = "9/11/2025: <img src=&quot;src/dashboard.png&quot; class=&quot;w-full mb-4&quot;> <img src=&quot;src/inventory.png&quot; class=&quot;w-full mb-4&quot;>";
+        </script>
+        <div onclick="openModal('Deliverables', deliverablesContent)" class="bg-white p-6 rounded-lg shadow-md border w-full sm:w-2/3 md:w-1/2 lg:w-1/3 cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
             <h1 class="text-2xl font-bold mb-4">Deliverables</h1>
+            <p class="line-clamp-3">
+                <script>document.write(deliverablesPreview);</script>
+            </p>
         </div>
 
         <!-- Resources/References page -->
-        <div onclick="openModal('Resources/References', 'NASA HUNCH Mars Transit Habitat Food Storage <a href=&quot;https://https://www.hunch-biohealth.com/uploads/2/2/0/9/22093000/mars_transit_habitat_food_storage.pdf&quot; target=&quot;_blank&quot; target=&quot;_blank&quot; class=&quot;text-blue-600 underline&quot;>Powerpoint</a>')" class="bg-white p-6 rounded-lg shadow-md border w-full sm:w-2/3 md:w-1/2 lg:w-1/3 cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
+        <script>
+            const resourcesContent = `
+                <p>NASA HUNCH Mars Transit Habitat Food Storage 
+                <a href="https://www.hunch-biohealth.com/uploads/2/2/0/9/22093000/mars_transit_habitat_food_storage.pdf" target="_blank" class="text-blue-600 underline">Powerpoint</a></p>
+            `;
+            const resourcesPreview = "NASA HUNCH Mars Transit Habitat Food Storage <a href=&quot;https://www.hunch-biohealth.com/uploads/2/2/0/9/22093000/mars_transit_habitat_food_storage.pdf&quot; target=&quot;_blank&quot; class=&quot;text-blue-600 underline&quot;>Powerpoint</a>";
+        </script>
+        <div onclick="openModal('Resources/References', resourcesContent)" class="bg-white p-6 rounded-lg shadow-md border w-full sm:w-2/3 md:w-1/2 lg:w-1/3 cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
             <h1 class="text-2xl font-bold mb-4">Resources/References</h1>
+            <p class="line-clamp-3">
+                <script>document.write(resourcesPreview);</script>
+            </p>
         </div>
+    </div>
 
-        <!-- Contact Information page -->
-        <div onclick="openModal('Contact Information', 'Filler')" class="bg-white p-6 rounded-lg shadow-md border w-full sm:w-2/3 md:w-1/2 lg:w-1/3 cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
-            <h1 class="text-2xl font-bold mb-4">Contact Information</h1>
-        </div>
+    <!-- Contact Information page -->
+    <div class="border-t-2 border-black w-full mt-8"></div>
+        <h1 class="text-2xl font-bold p-4">Contact Information</h1>
+        <h1 class="text-xl ml-4">Leo Ke</h1>
+        <p class="ml-4">Email: <a href="#">Filler</a>
+        <br>Phone: (555) 555-5555</p>
     </div>
 
     <!-- Modal -->
