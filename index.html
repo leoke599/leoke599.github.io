@@ -4,11 +4,31 @@
     <!-- Import tailwind css -->
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <title>Space Freezer</title>
+    <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
     <!-- Title on the website -->
-    <div class="bg-white p-6 shadow-md">
+    <div class="p-6 shadow-md flex justify-between items-center">
         <h1 class="text-2xl font-bold mb-4">Welcome to Space Freezer</h1>
+        <button id="darkModeButton" onclick="toggleDarkMode()">🌙 Switch to Dark</button>
+        <script>
+            function toggleDarkMode() {
+                document.body.classList.toggle('darkmode');
+                updateDarkModeButton();
+            }
+            
+            function updateDarkModeButton() {
+                const button = document.getElementById('darkModeButton');
+                if (document.body.classList.contains('darkmode')) {
+                    button.textContent = '☀️ Switch to Light';
+                } else {
+                    button.textContent = '🌙 Switch to Dark';
+                }
+            }
+            
+            // Set initial button text on page load
+            updateDarkModeButton();
+        </script>
     </div>
 
     <!-- Cards -->
@@ -26,7 +46,7 @@
 `               ;
             const aboutPreview= "<p>Problem Statement:<br>A manned mission to Mars will require a habitat that can support the crew for the duration of the mission, which is expected to last 1100-1200 days...";
         </script>
-        <div onclick="openModal('About', aboutContent)" class="bg-white p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
+        <div onclick="openModal('About', aboutContent)" class="p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
             <h1 class="text-2xl font-bold mb-4">About</h1>
             <p class="line-clamp-3">
                 <script>document.write(aboutPreview);</script>  
@@ -48,7 +68,7 @@
             `;
             const teamPreview = "Meet the team: <br><br>Leo Ke <br>Role: Computer Science...";
         </script>
-        <div onclick="openModal('Team', teamContent)" class="bg-white p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
+        <div onclick="openModal('Team', teamContent)" class="p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
             <h1 class="text-2xl font-bold mb-4">Team</h1>
             <p class="line-clamp-3">
                 <script>document.write(teamPreview);</script>
@@ -68,7 +88,7 @@
             `;
             const mentorPreview = "Meet our teachers:<br><br>Zach Flower <br> Zachary brings more than 15 years of experience in computer science and cybersecurity to Warren Tech. Before teaching, he worked as the Director of Engineering at Inspirato...";
         </script>
-        <div onclick="openModal('Mentors',  mentorContent)" class="bg-white p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 overflow-hidden">
+        <div onclick="openModal('Mentors',  mentorContent)" class="p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 overflow-hidden">
             <h1 class="text-2xl font-bold mb-4">Mentors</h1>
             <p class="line-clamp-3">
                 <script>document.write(mentorPreview);</script>
@@ -81,10 +101,14 @@
                 <p>9/11/2025 - Initialized dashboard and inventory system:
                 <br>For the website, I used react + vite and tailwindcss for the design and creation of the website.
                 I used fastapi and SQLite to set up a database that connects to the website.</p>
+                <br><p>9/26/2025 - Refined dashboard and inventory system:
+                <br>The dashboard now has a graph that shows simulated temperature and power usage data. There are dedicated web pages for both the temperature and power usage. The inventory system now has a add item button on the page and it also makes a barcode for every item that is added.
+                <br><br>10/3/2025 - Added check-in and check-out functionality in inventory system:
+                <br>The inventory system now allows users to check items in and out.</p>
             `;
             const updatesPreview = "9/11/2025 - Initialized dashboard and inventory system: <br>For the website, I used react + vite and tailwindcss for the design and creation of the website. I used fastapi and SQLite to set up a database that connects to the website...";
         </script>
-        <div onclick="openModal('Project Updates', updatesContent)" class="bg-white p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
+        <div onclick="openModal('Project Updates', updatesContent)" class="p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
             <h1 class="text-2xl font-bold mb-4">Project Updates</h1>
             <p class="line-clamp-3">
                 <script>document.write(updatesPreview);</script>
@@ -97,10 +121,17 @@
                 <p>9/11/2025:</p>
                 <img src="src/dashboard.png" class="w-full mb-4">
                 <img src="src/inventory.png" class="w-full mb-4">
+                <br><p>9/26/2025:</p>
+                <img src="src/2025-9-26-dashboard.png" class="w-full mb-4">
+                <img src="src/2025-9-26-temperature.png" class="w-full mb-4">
+                <img src="src/2025-9-26-power.png" class="w-full mb-4">
+                <img src="src/2025-9-26-inventory.png" class="w-full mb-4">
+                <img src="src/2025-9-26-barcode.png" class="w-full mb-4">
+
             `;
             const deliverablesPreview = "Click to see images...";
         </script>
-        <div onclick="openModal('Deliverables', deliverablesContent)" class="bg-white p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
+        <div onclick="openModal('Deliverables', deliverablesContent)" class="p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
             <h1 class="text-2xl font-bold mb-4">Deliverables</h1>
             <p class="line-clamp-3">
                 <script>document.write(deliverablesPreview);</script>
@@ -114,11 +145,12 @@
                 <a href="https://www.hunch-biohealth.com/uploads/2/2/0/9/22093000/mars_transit_habitat_food_storage.pdf" target="_blank" class="text-blue-600 underline">Powerpoint</a>
                 <br><br><a href="https://chatgpt.com/" target="_blank" class="text-blue-600 underline">ChatGPT</a> used to assist with research
                 <br><br> Official <a href="https://www.nasa.gov/" target="_blank" class="text-blue-600 underline">NASA</a> website used for research
-                <br><br><a href="https://www.amazon.com/" target="_blank" class="text-blue-600 underline">Amazon</a> used for materials </p>
+                <br><br><a href="https://www.amazon.com/" target="_blank" class="text-blue-600 underline">Amazon</a> used for materials
+                <br><br><a href="https://www.solidworks.com/" target="_blank" class="text-blue-600 underline">SolidWorks</a> used for CAD modeling</p>
             `;
             const resourcesPreview = "NASA HUNCH Mars Transit Habitat Food Storage Powerpoint <br><br>ChatGPT used to assist with research...";
         </script>
-        <div onclick="openModal('Resources/References', resourcesContent)" class="bg-white p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
+        <div onclick="openModal('Resources/References', resourcesContent)" class="p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
             <h1 class="text-2xl font-bold mb-4">Resources/References</h1>
             <p class="line-clamp-3">
                 <script>document.write(resourcesPreview);</script>
@@ -127,14 +159,16 @@
     </div>
 
     <!-- Contact page -->
-    <div class="border-t-2 border-black w-full mt-8"></div>
-        <h1 class="text-2xl font-bold p-4">Contact</h1>
-        <h1 class="text-xl ml-4 mb-8">To contact us about this project, fill out this <a href="https://forms.gle/BZZgXafaBBgRnvub7" target="_blank" class="text-blue-600 underline">form</a> </h1>
+    <div id="contact">
+        <div class="border-t-2 border-black w-full mt-8">
+            <h1 class="text-2xl font-bold p-4">Contact</h1>
+            <h1 class="text-xl ml-4 mb-8">To contact us about this project, fill out this <a href="https://forms.gle/BZZgXafaBBgRnvub7" target="_blank" class="text-blue-600 underline">form</a> </h1>
+        </div>
     </div>
 
     <!-- Modal -->
     <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center z-50 hidden">
-        <div class="bg-white rounded-lg shadow-lg p-8 pt-12 max-w-2xl w-full relative h-[80vh] max-h-[80vh] overflow-y-auto mt-8">
+        <div id="modalBox" class="bg-white rounded-lg shadow-lg p-8 pt-12 max-w-2xl w-full relative h-[80vh] max-h-[80vh] overflow-y-auto mt-8">
             <button onclick="closeModal()" class="top-2 text-gray-500 hover:text-gray-700 text-2xl z-10">&times;</button>
             <h2 id="modalTitle" class="text-2xl font-bold mb-4"></h2>
             <div id="modalContent"></div>

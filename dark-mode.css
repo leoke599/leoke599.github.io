@@ -1,0 +1,15 @@
+.darkmode {
+    background-color: rgb(31, 29, 29);
+    color: white;
+}
+
+/* Modal background for dark mode */
+.darkmode #modalBox {
+    background-color: rgb(31, 29, 29);
+    color: white;
+}
+
+/* Contact border for dark mode */
+.darkmode #contact .border-black {
+    border-color: white;
+}
