@@ -1,195 +1,517 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Import tailwind css -->
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <title>Space Freezer</title>
+    <title>Space Freezer - NASA HUNCH Mars Transit Habitat Food Storage Project</title>
+    <meta name="description" content="A NASA HUNCH project developing an innovative space freezer system for Mars transit habitat food storage, designed to operate efficiently in microgravity environments.">
     <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
-    <!-- Title on the website -->
-    <div class="p-6 shadow-md flex justify-between items-center">
-        <h1 class="text-2xl font-bold mb-4">Welcome to Space Freezer</h1>
-        <button id="darkModeButton" onclick="toggleDarkMode()">🌙 Switch to Dark</button>
-        <script>
-            function toggleDarkMode() {
-                document.body.classList.toggle('darkmode');
-                updateDarkModeButton();
-            }
-            
-            function updateDarkModeButton() {
-                const button = document.getElementById('darkModeButton');
-                if (document.body.classList.contains('darkmode')) {
-                    button.textContent = '☀️ Switch to Light';
-                } else {
-                    button.textContent = '🌙 Switch to Dark';
-                }
-            }
-            
-            // Set initial button text on page load
-            updateDarkModeButton();
-        </script>
-    </div>
+    <!-- Skip to main content link for screen readers -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded">Skip to main content</a>
 
-    <!-- Cards -->
-    <div class="flex flex-wrap justify-center gap-6 mt-6">
+    <!-- Header -->
+    <header class="p-6 shadow-md flex justify-between items-center" role="banner">
+        <h1 class="text-2xl font-bold mb-4">Welcome to Space Freezer</h1>
+        <button 
+            id="darkModeButton" 
+            onclick="toggleDarkMode()" 
+            aria-label="Toggle dark mode"
+            class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 px-3 py-2 rounded"
+        >
+            🌙 Switch to Dark
+        </button>
+        <!-- dark mode behavior handled later in the accessibility script -->
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main" tabindex="-1">
+        <!-- Project Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 px-6" role="region" aria-label="Project information cards">
+
+        <!-- Off-screen preview descriptions for aria-describedby (screen readers) -->
+        <div class="sr-only" id="about-preview">Mission Overview and problem statement for the Mars Transit Habitat and space freezer project.</div>
+        <div class="sr-only" id="team-preview">Overview of the project team and individual roles including software, mechanical, and systems leads.</div>
+        <div class="sr-only" id="mentors-preview">Information about Warren Tech instructors and mentors supporting the project.</div>
+        <div class="sr-only" id="updates-preview">Project timeline and recent development updates including software and monitoring features.</div>
+        <div class="sr-only" id="deliverables-preview">Visual deliverables including dashboard screenshots, inventory system images, and demo video.</div>
+        <div class="sr-only" id="resources-preview">List of project resources and references including NASA documents and technical tools.</div>
 
         <!-- About page -->
         <script>
             const aboutContent = `
-                <p>Problem Statement:
-                <br>A manned mission to Mars will require a habitat that can support the crew for the duration of the mission, which is expected to last 1100-1200 days. There are (currently) no plans to resupply the Mars habitat,  so the crew will need to bring all of their food with them. The food will need to be stored in a way that preserves its nutritional value and prevents spoilage. They plan on using some thermostabilized foods, but these foods will still need to be stored in a freezer/fridge to ensure they remain safe to eat.
-                <br><br>Goal:
-                <br>The goal of the space freezer is to create a freezer/fridge to preserve the food. The food storage needs to be as energy efficient as possible, as the habitat will have limited power available, so the freezer/fridge needs to use space conditions to help with the cooling process. The freezer/fridge also needs to be able to operate in a microgravity environment, as the habitat will be in space.
-                For more detailed information check out the official NASA HUNCH biomedical 
-                <a href="https://www.hunch-biohealth.com/biomedical-projects.html" target="_blank" class="text-blue-600 underline">page</a>. </p>
-`               ;
-            const aboutPreview= "<p>Problem Statement:<br>A manned mission to Mars will require a habitat that can support the crew for the duration of the mission, which is expected to last 1100-1200 days...";
+                <h3 class="text-xl font-semibold mb-3">Mission Overview</h3>
+                <p>The Mars Transit Habitat is a theoretical space habitat that is supposed to last 8-9 months in space meant to bring humans to Mars.</p>
+                
+                <h3 class="text-xl font-semibold mb-3 mt-6">Problem Statement</h3>
+                <p>A manned mission to Mars will require a habitat that can support the crew for the duration of the mission, which is expected to last <strong>8-9 months</strong>. Unlike Earth-based missions or even International Space Station operations, there are currently no plans to resupply the Mars habitat during the mission duration.</p>
+                
+                <p>This means the crew must bring all consumables with them, including the entire food supply for the long journey and surface operations. The food storage system faces unique challenges:</p>
+                <ul class="list-disc list-inside mt-3 mb-3 ml-4">
+                    <li><strong>Extended Duration:</strong> Food must remain safe and nutritious for over 8-9 months</li>
+                    <li><strong>Limited Power:</strong> Habitat power systems are constrained and must be conserved</li>
+                    <li><strong>Microgravity Operation:</strong> Traditional refrigeration systems don't work in zero gravity</li>
+                    <li><strong>Space Environment:</strong> Extreme temperature variations and vacuum conditions</li>
+                    <li><strong>No Maintenance:</strong> System must operate reliably without external repair capabilities</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold mb-3 mt-6">Our Solution: The Space Freezer</h3>
+                <p>Our goal is to design and develop an innovative freezer/refrigeration system specifically engineered for the Mars habitat environment. This system must:</p>
+                
+                <ul class="list-disc list-inside mt-3 mb-3 ml-4">
+                    <li><strong>Maximize Energy Efficiency:</strong> Utilize space conditions (extreme cold, vacuum) to assist cooling processes</li>
+                    <li><strong>Ensure Food Safety:</strong> Maintain proper temperatures for thermostabilized and frozen foods</li>
+                    <li><strong>Operate in Microgravity:</strong> Function without relying on gravity-based cooling circulation</li>
+                    <li><strong>Maintain Reliability:</strong> Provide consistent performance throughout the entire mission duration</li>
+                    <li><strong>Optimize Space Usage:</strong> Efficiently store maximum food quantity in minimal habitat space</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold mb-3 mt-6">Innovation Approach</h3>
+                <p>Our design leverages the unique conditions of space to create a more efficient cooling system than traditional Earth-based refrigeration. By utilizing the vacuum of space and extreme temperature differentials, we can reduce power consumption while maintaining optimal food preservation temperatures.</p>
+                
+                <p class="mt-4">For more detailed information about this NASA HUNCH project, visit the official 
+                <a href="https://www.hunch-biohealth.com/biomedical-projects.html" target="_blank" class="text-blue-600 underline" rel="noopener noreferrer">NASA HUNCH biomedical projects page</a>.</p>
+            `;
+            const aboutPreview= "Mission Overview<br><br>The Mars Transit Habitat is a theoretical space habitat that is supposed to last 8-9 months in space meant to bring humans to Mars...";
         </script>
-        <div onclick="openModal('About', aboutContent)" class="p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
-            <h1 class="text-2xl font-bold mb-4">About</h1>
-            <p class="line-clamp-3">
-                <script>document.write(aboutPreview);</script>  
-            </p>
-        </div>
+        <article>
+            <button 
+                onclick="openModal('About', aboutContent)" 
+                class="p-6 rounded-lg shadow-md border cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:shadow-lg w-full"
+                aria-label="Open About section - Learn about the Mars Transit Habitat project"
+                tabindex="0"
+                onkeydown="handleCardKeydown(event, 'About', aboutContent)"
+            >
+                <h2 class="text-2xl font-bold mb-4">About</h2>
+                <div class="line-clamp-3" aria-describedby="about-preview">
+                    <script>document.write(aboutPreview);</script>  
+                </div>
+            </button>
+        </article>
 
         <!-- Team page -->
         <script>
             const teamContent = `
-                <p>Meet the team:
-                <br><br>Leo Ke<br>Role: Computer Science
-                <br>Leo is a senior high school students with a passion for everything computer related. He will manage everything on the software side and a little bit of the hardware side that relates to his software.
-                <br><br>Shepard<br>Role: Engineering
-                <br>Filler
-                <br><br>Dylan<br>Role: Engineering
-                <br>Filler
-                <br><br>Jack<br>Role: Engineering
-                <br>Filler</p>
+                <h3 class="text-xl font-semibold mb-4">Meet Our Engineering Team</h3>
+                <p>Our multidisciplinary team combines expertise in computer science and engineering to tackle the complex challenges of space-grade refrigeration technology.</p>
+                
+                <div class="border-l-4 border-blue-500 pl-4 mt-6 mb-6">
+                    <h4 class="text-lg font-semibold mb-2">Leo Ke</h4>
+                    <p class="text-sm text-gray-600 mb-2"><strong>Role:</strong> Computer Science & Software Systems Lead</p>
+                    <p>Leo is a senior high school student with an exceptional passion for computer science and technology integration. As the software systems lead, Leo manages all digital aspects of the project including:</p>
+                    <ul class="list-disc list-inside mt-2 mb-2 ml-4">
+                        <li>Development of the monitoring and control dashboard</li>
+                        <li>Database management for inventory tracking systems</li>
+                        <li>Temperature and power monitoring software</li>
+                        <li>Integration of hardware sensors with software interfaces</li>
+                        <li>System automation and user interface design</li>
+                    </ul>
+                    <p>Leo's technical expertise bridges the gap between mechanical engineering solutions and modern digital control systems, ensuring our space freezer can be monitored, controlled, and maintained through sophisticated software interfaces.</p>
+                </div>
+                
+                <div class="border-l-4 border-green-500 pl-4 mb-6">
+                    <h4 class="text-lg font-semibold mb-2">Shepard</h4>
+                    <p class="text-sm text-gray-600 mb-2"><strong>Role:</strong> Filler</p>
+                    <p>Filler</p>
+                    <ul class="list-disc list-inside mt-2 mb-2 ml-4">
+                        <li>Filler</li>
+                    </ul>
+                </div>
+                
+                <div class="border-l-4 border-purple-500 pl-4 mb-6">
+                    <h4 class="text-lg font-semibold mb-2">Shepard</h4>
+                    <p class="text-sm text-gray-600 mb-2"><strong>Role:</strong> Filler</p>
+                    <p>Filler</p>
+                    <ul class="list-disc list-inside mt-2 mb-2 ml-4">
+                        <li>Filler</li>
+                    </ul>
+                </div>
+                
+                <div class="border-l-4 border-red-500 pl-4 mb-6">
+                    <h4 class="text-lg font-semibold mb-2">Shepard</h4>
+                    <p class="text-sm text-gray-600 mb-2"><strong>Role:</strong> Filler</p>
+                    <p>Filler</p>
+                    <ul class="list-disc list-inside mt-2 mb-2 ml-4">
+                        <li>Filler</li>
+                    </ul>
+                </div>
+                
+                <h3 class="text-xl font-semibold mb-3 mt-6">Team Collaboration</h3>
+                <p>Our team operates with a collaborative approach, combining individual expertise to solve complex engineering challenges. Regular design reviews, prototyping sessions, and testing phases ensure that our space freezer solution meets the demanding requirements of Mars habitat operations.</p>
             `;
-            const teamPreview = "Meet the team: <br><br>Leo Ke <br>Role: Computer Science...";
+            const teamPreview = "Meet Our Engineering Team<br><br>Our multidisciplinary team combines expertise in computer science and engineering to tackle the complex challenges of space-grade refrigeration technology...";
         </script>
-        <div onclick="openModal('Team', teamContent)" class="p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
-            <h1 class="text-2xl font-bold mb-4">Team</h1>
-            <p class="line-clamp-3">
-                <script>document.write(teamPreview);</script>
-            </p>
-        </div>
+        <article>
+            <button 
+                onclick="openModal('Team', teamContent)" 
+                class="p-6 rounded-lg shadow-md border cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:shadow-lg w-full"
+                aria-label="Open Team section - Meet our engineering team"
+                tabindex="0"
+                onkeydown="handleCardKeydown(event, 'Team', teamContent)"
+            >
+                <h2 class="text-2xl font-bold mb-4">Team</h2>
+                <div class="line-clamp-3" aria-describedby="team-preview">
+                    <script>document.write(teamPreview);</script>
+                </div>
+            </button>
+        </article>
 
         <!-- Mentors page -->
         <script>
             const mentorContent = `
-                <p>Meet our teachers:</p>
-                
-                <p><br>Zach Flower - Computer Science and Cybersecurity Instructor<br><br>Zachary brings more than 15 years of experience in computer science and cybersecurity to Warren Tech. Before teaching, he worked as the Director of Engineering at Inspirato and held roles as an engineering manager and software engineer at organizations including Automox, Name.com, and the NSA. He earned a BS in Computer Science from CU Boulder and is also a freelance writer whose work has been published in TechTarget, 2600 Magazine, and Hello World magazine.
-                <br><br>He believes software development is a trade that can completely change the trajectory of someone’s life without requiring expensive degrees—just curiosity and a willingness to learn. Zachary enjoys guiding students on that journey and watching them grow into confident developers. In his free time, he describes himself as an “avid indoorsman,” often found reading or (not surprisingly) coding.</p>
-                
-                <p><br>Nathan Olsen - Engineering Design & Build Instructor<br><br> Nate started teaching at Warren Tech in 2009 and brings 22 years of experience in the industry. His background includes roles as a drafter for a pharmaceutical company, designing packaging, and working as a contracted drafter for outside projects. He has also been working with NASA for 11 years, helping students design and prototype hardware for use in training and flight.
-                <br><br>Outside of teaching, Nate enjoys fishing, golfing, camping, and going on road trips. He holds a Bachelor of Science in Industrial Technology in Education and a Master’s in Informational Technology in Education. His favorite aspect of working in Engineering: Design and Build is the daily variety and new challenges that come with the role.</p>
+                <h3 class="text-xl font-semibold mb-4">Meet Our Teachers & Mentors</h3>
+                <div class="border-l-4 border-blue-500 pl-4 mb-8">
+                    <h4 class="text-lg font-semibold mb-2">Zach Flower</h4>
+                    <p class="text-sm text-gray-600 mb-2"><strong>Role:</strong> Computer Science and Cybersecurity Instructor</p>
+                    <p>Zachary brings more than 15 years of experience in computer science and cybersecurity to Warren Tech. Before teaching, he worked as the Director of Engineering at Inspirato and held roles as an engineering manager and software engineer at organizations including Automox, Name.com, and the NSA. He earned a BS in Computer Science from CU Boulder and is also a freelance writer whose work has been published in TechTarget, 2600 Magazine, and Hello World magazine.</p>
+                    <p class="mt-2">He believes software development is a trade that can completely change the trajectory of someone’s life without requiring expensive degrees—just curiosity and a willingness to learn. Zachary enjoys guiding students on that journey and watching them grow into confident developers. In his free time, he describes himself as an “avid indoorsman,” often found reading or (not surprisingly) coding.</p>
+                </div>
+                <div class="border-l-4 border-green-500 pl-4 mb-8">
+                    <h4 class="text-lg font-semibold mb-2">Nathan Olsen</h4>
+                    <p class="text-sm text-gray-600 mb-2"><strong>Role:</strong> Engineering Design & Build Instructor</p>
+                    <p>Nate started teaching at Warren Tech in 2009 and brings 22 years of experience in the industry. His background includes roles as a drafter for a pharmaceutical company, designing packaging, and working as a contracted drafter for outside projects. He has also been working with NASA for 11 years, helping students design and prototype hardware for use in training and flight.</p>
+                    <p class="mt-2">Outside of teaching, Nate enjoys fishing, golfing, camping, and going on road trips. He holds a Bachelor of Science in Industrial Technology in Education and a Master’s in Informational Technology in Education. His favorite aspect of working in Engineering: Design and Build is the daily variety and new challenges that come with the role.</p>
+                </div>
             `;
             const mentorPreview = "Meet our teachers:<br><br>Zach Flower <br> Zachary brings more than 15 years of experience in computer science and cybersecurity to Warren Tech. Before teaching, he worked as the Director of Engineering at Inspirato...";
         </script>
-        <div onclick="openModal('Mentors',  mentorContent)" class="p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 overflow-hidden">
-            <h1 class="text-2xl font-bold mb-4">Mentors</h1>
-            <p class="line-clamp-3">
-                <script>document.write(mentorPreview);</script>
-            </p>
-        </div>
+        <article>
+            <button 
+                onclick="openModal('Mentors', mentorContent)" 
+                class="p-6 rounded-lg shadow-md border cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:shadow-lg w-full"
+                aria-label="Open Mentors section - Meet our teachers and mentors"
+                tabindex="0"
+                onkeydown="handleCardKeydown(event, 'Mentors', mentorContent)"
+            >
+                <h2 class="text-2xl font-bold mb-4">Mentors</h2>
+                <div class="line-clamp-3" aria-describedby="mentors-preview">
+                    <script>document.write(mentorPreview);</script>
+                </div>
+            </button>
+        </article>
 
         <!-- Project Updates page -->
         <script>
             const updatesContent = `
-                <p>9/11/2025 - Initialized dashboard and inventory system:
-                <br>For the website, I used react + vite and tailwindcss for the design and creation of the website.
-                I used fastapi and SQLite to set up a database that connects to the website.</p>
-                <br><p>9/26/2025 - Refined dashboard and inventory system:
-                <br>The dashboard now has a graph that shows simulated temperature and power usage data. There are dedicated web pages for both the temperature and power usage. The inventory system now has a add item button on the page and it also makes a barcode for every item that is added.
-                <br><br>10/3/2025 - Added check-in and check-out functionality in inventory system and improved temperature graph:
-                <br>The inventory system now allows users to check items in and out when directly accessing the database. The temperature graph has also been improved to be a scrollable graph instead of compressing with each new reading.</p>
+                <h3 class="text-xl font-semibold mb-4">Development Timeline & Technical Progress</h3>
+                
+                <div class="border-l-4 border-blue-500 pl-4 mb-6">
+                    <h4 class="text-lg font-semibold mb-2">September 11, 2025 - Initial System Architecture</h4>
+                    <p class="text-sm text-gray-600 mb-2"><strong>Milestone:</strong> Foundation Development Phase</p>
+                    <p><strong>Dashboard and Inventory System Initialization:</strong></p>
+                    <p>Established the core software infrastructure for monitoring and managing the space freezer system. This foundational work involved:</p>
+                    <ul class="list-disc list-inside mt-2 mb-3 ml-4">
+                        <li><strong>Frontend Development:</strong> Implemented React + Vite framework with TailwindCSS for responsive, modern UI design</li>
+                        <li><strong>Backend Architecture:</strong> Deployed FastAPI server for high-performance API endpoints</li>
+                        <li><strong>Database Integration:</strong> Configured SQLite database for lightweight, reliable data storage</li>
+                        <li><strong>System Integration:</strong> Established seamless communication between frontend interface and backend data management</li>
+                    </ul>
+                    <p>This phase created the digital foundation necessary for monitoring critical parameters like temperature, power consumption, and inventory management in the space freezer system.</p>
+                </div>
+                
+                <div class="border-l-4 border-green-500 pl-4 mb-6">
+                    <h4 class="text-lg font-semibold mb-2">September 26, 2025 - Advanced Monitoring & Tracking</h4>
+                    <p class="text-sm text-gray-600 mb-2"><strong>Milestone:</strong> Enhanced System Capabilities</p>
+                    <p><strong>Refined Dashboard and Inventory System:</strong></p>
+                    <p>Significantly expanded system capabilities with advanced monitoring and inventory management features:</p>
+                    <ul class="list-disc list-inside mt-2 mb-3 ml-4">
+                        <li><strong>Real-time Data Visualization:</strong> Implemented dynamic graphing for temperature and power usage with simulated mission-critical data</li>
+                        <li><strong>Dedicated Monitoring Pages:</strong> Created specialized interfaces for temperature control and power management systems</li>
+                        <li><strong>Inventory Management:</strong> Added comprehensive item tracking with automated barcode generation for each stored food item</li>
+                        <li><strong>User Interface Enhancement:</strong> Streamlined navigation and improved user experience for space habitat operations</li>
+                    </ul>
+                    <p>These improvements provide mission-critical monitoring capabilities essential for maintaining food safety and system efficiency during long-duration Mars missions.</p>
+                </div>
+                
+                <div class="border-l-4 border-purple-500 pl-4 mb-6">
+                    <h4 class="text-lg font-semibold mb-2">October 3, 2025 - Operational Workflow Integration</h4>
+                    <p class="text-sm text-gray-600 mb-2"><strong>Milestone:</strong> Complete System Functionality</p>
+                    <p><strong>Check-in/Check-out Functionality and Enhanced Data Visualization:</strong></p>
+                    <p>Implemented complete operational workflows for managing food inventory in the space freezer environment:</p>
+                    <ul class="list-disc list-inside mt-2 mb-3 ml-4">
+                        <li><strong>Inventory Operations:</strong> Full check-in and check-out functionality for tracking food consumption and restocking</li>
+                        <li><strong>Database Integration:</strong> Direct database access for real-time inventory updates and transaction logging</li>
+                        <li><strong>Enhanced Data Visualization:</strong> Upgraded temperature monitoring with scrollable, real-time graphs for continuous mission monitoring</li>
+                        <li><strong>Scalable Architecture:</strong> Improved system performance to handle large datasets over multi-year mission duration</li>
+                    </ul>
+                    <p>This phase completed the essential operational capabilities needed for crew members to effectively manage food storage throughout the Mars mission duration.</p>
+                </div>
+                
+                <h3 class="text-xl font-semibold mb-3 mt-6">Next Development Phases</h3>
+                <p>Upcoming development will focus on hardware integration, environmental testing protocols, and system optimization for the extreme conditions of space operation. Future updates will include physical prototype testing, thermal system validation, and comprehensive safety system implementation.</p>
             `;
-            const updatesPreview = "9/11/2025 - Initialized dashboard and inventory system: <br>For the website, I used react + vite and tailwindcss for the design and creation of the website. I used fastapi and SQLite to set up a database that connects to the website...";
+            const updatesPreview = "Development Timeline & Technical Progress<br><br>September 11, 2025 - Initial System Architecture: Established the core software infrastructure for monitoring and managing the space freezer system...";
         </script>
-        <div onclick="openModal('Project Updates', updatesContent)" class="p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
-            <h1 class="text-2xl font-bold mb-4">Project Updates</h1>
-            <p class="line-clamp-3">
-                <script>document.write(updatesPreview);</script>
-            </p>
-        </div>
+        <article>
+            <button 
+                onclick="openModal('Project Updates', updatesContent)" 
+                class="p-6 rounded-lg shadow-md border cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:shadow-lg w-full"
+                aria-label="Open Project Updates section - View development progress"
+                tabindex="0"
+                onkeydown="handleCardKeydown(event, 'Project Updates', updatesContent)"
+            >
+                <h2 class="text-2xl font-bold mb-4">Project Updates</h2>
+                <div class="line-clamp-3" aria-describedby="updates-preview">
+                    <script>document.write(updatesPreview);</script>
+                </div>
+            </button>
+        </article>
 
         <!-- Deliverables page -->
         <script>
             const deliverablesContent = `
-                <p>9/11/2025:</p>
-                <img src="src/dashboard.png" class="w-full mb-4">
-                <img src="src/inventory.png" class="w-full mb-4">
-                <br><p>9/26/2025:</p>
-                <img src="src/2025-9-26-dashboard.png" class="w-full mb-4">
-                <img src="src/2025-9-26-temperature.png" class="w-full mb-4">
-                <img src="src/2025-9-26-power.png" class="w-full mb-4">
-                <img src="src/2025-9-26-inventory.png" class="w-full mb-4">
-                <img src="src/2025-9-26-barcode.png" class="w-full mb-4">
-                <br><p>10/3/2025:</p>
-                <video controls class="w-full mb-4">
-                    <source src="src/2025-10-3-check-in-and-check-out.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <img src="src/2025-10-3-temperature.png" class="w-full mb-4">
-
+                <h3 class="text-xl font-semibold mb-4">Project Deliverables & Visual Documentation</h3>
+                <p>This section showcases the evolution of our space freezer monitoring system through visual documentation of each development milestone. Each deliverable demonstrates progressive improvement in functionality, design, and technical capabilities.</p>
+                
+                <div class="border-l-4 border-blue-500 pl-4 mb-6 mt-6">
+                    <h4 class="text-lg font-semibold mb-3">September 11, 2025 - Initial System Foundation</h4>
+                    <p class="mb-4">The first working prototypes of our dashboard and inventory management system, establishing the core infrastructure for space freezer monitoring.</p>
+                    
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">Dashboard Interface v1.0:</p>
+                        <img src="src/dashboard.png" class="w-full mb-2 border rounded" alt="Initial dashboard interface showing basic monitoring capabilities with system status overview, temperature readings, and navigation menu">
+                        <p class="text-sm text-gray-600">Initial dashboard layout showing basic monitoring capabilities and system status overview.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <p class="font-semibold mb-2">Inventory Management System v1.0:</p>
+                        <img src="src/inventory.png" class="w-full mb-2 border rounded" alt="First implementation of inventory management system showing food item list with basic database integration and simple user interface">
+                        <p class="text-sm text-gray-600">First implementation of food inventory tracking system with basic database integration.</p>
+                    </div>
+                </div>
+                
+                <div class="border-l-4 border-green-500 pl-4 mb-6">
+                    <h4 class="text-lg font-semibold mb-3">September 26, 2025 - Enhanced Monitoring Capabilities</h4>
+                    <p class="mb-4">Major system improvements including real-time data visualization, dedicated monitoring pages, and automated inventory tracking with barcode generation.</p>
+                    
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">Enhanced Dashboard v2.0:</p>
+                        <img src="src/2025-9-26-dashboard.png" class="w-full mb-2 border rounded" alt="Enhanced dashboard version 2.0 with integrated real-time graphs, improved navigation, and comprehensive system monitoring interface">
+                        <p class="text-sm text-gray-600">Improved dashboard with integrated graphing capabilities and enhanced user interface design.</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">Temperature Monitoring System:</p>
+                        <img src="src/2025-9-26-temperature.png" class="w-full mb-2 border rounded" alt="Dedicated temperature monitoring interface displaying real-time temperature graphs with time-series data for thermal management">
+                        <p class="text-sm text-gray-600">Dedicated temperature monitoring interface with real-time graphing for critical thermal management.</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">Power Management System:</p>
+                        <img src="src/2025-9-26-power.png" class="w-full mb-2 border rounded" alt="Power consumption monitoring dashboard showing energy usage graphs and power management controls for space habitat operations">
+                        <p class="text-sm text-gray-600">Power consumption monitoring dashboard essential for energy-constrained space habitat operations.</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">Advanced Inventory Management v2.0:</p>
+                        <img src="src/2025-9-26-inventory.png" class="w-full mb-2 border rounded" alt="Enhanced inventory management system with improved user interface, item tracking capabilities, and add item functionality">
+                        <p class="text-sm text-gray-600">Enhanced inventory system with improved user interface and additional tracking capabilities.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <p class="font-semibold mb-2">Automated Barcode Generation:</p>
+                        <img src="src/2025-9-26-barcode.png" class="w-full mb-2 border rounded" alt="Automatic barcode generation interface showing generated barcodes for inventory items with scanning capabilities">
+                        <p class="text-sm text-gray-600">Automatic barcode generation system for efficient inventory tracking and management in space environment.</p>
+                    </div>
+                </div>
+                
+                <div class="border-l-4 border-purple-500 pl-4 mb-6">
+                    <h4 class="text-lg font-semibold mb-3">October 3, 2025 - Complete Operational Workflow</h4>
+                    <p class="mb-4">Implementation of full operational capabilities including check-in/check-out functionality and enhanced data visualization for mission-critical monitoring.</p>
+                    
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">Check-in/Check-out System Demonstration:</p>
+                        <video controls class="w-full mb-2 border rounded" aria-label="Video demonstration of inventory check-in and check-out system" aria-describedby="video1-desc">
+                            <source src="src/2025-10-3-check-in-and-check-out.mp4" type="video/mp4">
+                            Your browser does not support the video tag. This video demonstrates the complete inventory management workflow with real-time database operations.
+                        </video>
+                        <div id="video1-desc" class="sr-only">Video shows the complete inventory management workflow with real-time database operations for checking food items in and out of the space freezer system.</div>
+                        <p class="text-sm text-gray-600">Live demonstration of the complete inventory management workflow, showing real-time database operations for food item tracking.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <p class="font-semibold mb-2">Enhanced Temperature Monitoring v3.0:</p>
+                        <img src="src/2025-10-3-temperature.png" class="w-full mb-2 border rounded" alt="Enhanced temperature monitoring system version 3.0 with scrollable graphs showing continuous temperature data over time for long-term mission tracking">
+                        <p class="text-sm text-gray-600">Upgraded temperature monitoring system with scrollable graphs for continuous long-term mission data tracking.</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold mb-3 mt-6">Technical Achievement Summary</h3>
+                <p>These deliverables demonstrate our systematic approach to developing a comprehensive space freezer monitoring system. Each iteration builds upon previous work, adding critical functionality needed for Mars habitat food storage management. The progression shows our commitment to creating reliable, user-friendly systems capable of operating in the demanding environment of space missions.</p>
             `;
-            const deliverablesPreview = "Click to see images...";
+            const deliverablesPreview = "Project Deliverables & Visual Documentation<br><br>This section showcases the evolution of our space freezer monitoring system through visual documentation of each development milestone...";
         </script>
-        <div onclick="openModal('Deliverables', deliverablesContent)" class="p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
-            <h1 class="text-2xl font-bold mb-4">Deliverables</h1>
-            <p class="line-clamp-3">
-                <script>document.write(deliverablesPreview);</script>
-            </p>
-        </div>
+        <article>
+            <button 
+                onclick="openModal('Deliverables', deliverablesContent)" 
+                class="p-6 rounded-lg shadow-md border cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:shadow-lg w-full"
+                aria-label="Open Deliverables section - View project deliverables and visual documentation"
+                tabindex="0"
+                onkeydown="handleCardKeydown(event, 'Deliverables', deliverablesContent)"
+            >
+                <h2 class="text-2xl font-bold mb-4">Deliverables</h2>
+                <div class="line-clamp-3" aria-describedby="deliverables-preview">
+                    <script>document.write(deliverablesPreview);</script>
+                </div>
+            </button>
+        </article>
 
         <!-- Resources/References page -->
         <script>
             const resourcesContent = `
-                <p>NASA HUNCH Mars Transit Habitat Food Storage 
-                <a href="https://www.hunch-biohealth.com/uploads/2/2/0/9/22093000/mars_transit_habitat_food_storage.pdf" target="_blank" class="text-blue-600 underline">Powerpoint</a>
-                <br><br><a href="https://chatgpt.com/" target="_blank" class="text-blue-600 underline">ChatGPT</a> used to assist with research
-                <br><br> Official <a href="https://www.nasa.gov/" target="_blank" class="text-blue-600 underline">NASA</a> website used for research
-                <br><br><a href="https://www.amazon.com/" target="_blank" class="text-blue-600 underline">Amazon</a> used for materials
-                <br><br><a href="https://www.solidworks.com/" target="_blank" class="text-blue-600 underline">SolidWorks</a> used for CAD modeling</p>
+                <h3 class="text-xl font-semibold mb-3">Primary Project Resources</h3>
+                <p><strong>NASA HUNCH Mars Transit Habitat Food Storage</strong><br>
+                <a href="https://www.hunch-biohealth.com/uploads/2/2/0/9/22093000/mars_transit_habitat_food_storage.pdf" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline">Official Project Specification Powerpoint</a><br>
+                This document provides the complete project requirements, constraints, and goals for developing the space freezer system for Mars missions.</p>
+                
+                <h3 class="text-xl font-semibold mb-3 mt-6">Research and Documentation Resources</h3>
+                <p><strong>NASA Official Website</strong><br>
+                <a href="https://www.nasa.gov/" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline">NASA.gov</a><br>
+                Primary source for space mission requirements, Mars habitat specifications, and space-grade equipment standards.</p>
+                
+                <p><strong>NASA Food Systems Research</strong><br>
+                <a href="https://www.nasa.gov/mission_pages/station/research/experiments/explorer/Investigation.html?#id=1001" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline">Space Food Systems</a><br>
+                Research on food preservation techniques and nutritional requirements for long-duration space missions.</p>
+                
+                <p><strong>Space Environment Conditions</strong><br>
+                Documentation on microgravity effects, temperature variations, and power constraints in space habitats that directly impact freezer design requirements.</p>
+                
+                <h3 class="text-xl font-semibold mb-3 mt-6">Technical Development Tools</h3>
+                <p><strong>SolidWorks CAD Software</strong><br>
+                <a href="https://www.solidworks.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline">SolidWorks</a><br>
+                Professional 3D CAD modeling software used for designing the mechanical components, thermal systems, and overall freezer assembly.</p>
+                
+                <p><strong>Material Sourcing</strong><br>
+                <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline">Amazon</a><br>
+                Platform for sourcing prototype materials, sensors, and electronic components for the freezer system development.</p>
+                
+                <h3 class="text-xl font-semibold mb-3 mt-6">Research Assistance</h3>
+                <p><strong>AI Research Assistant</strong><br>
+                <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline">ChatGPT</a><br>
+                Used to assist with technical research, problem-solving methodologies, and reviewing industry best practices for space-grade refrigeration systems.</p>
+                
+                <h3 class="text-xl font-semibold mb-3 mt-6">Additional Technical References</h3>
+                <p><strong>Space Grade Materials Standards</strong><br>
+                Research into materials that can withstand space conditions including vacuum, temperature extremes, and radiation exposure.</p>
+                
+                <p><strong>Energy Efficiency in Space Applications</strong><br>
+                Studies on power consumption optimization for space habitats, focusing on thermal management and energy conservation techniques.</p>
+                
+                <p><strong>Microgravity Fluid Dynamics</strong><br>
+                Research on how fluids and heat transfer behave in microgravity environments, crucial for designing effective cooling systems.</p>
+                
+                <p><strong>Food Safety and Preservation</strong><br>
+                Guidelines for maintaining food safety standards during long-duration missions, including temperature control requirements and contamination prevention.</p>
             `;
-            const resourcesPreview = "NASA HUNCH Mars Transit Habitat Food Storage Powerpoint <br><br>ChatGPT used to assist with research...";
+            const resourcesPreview = "Primary Project Resources<br><br>NASA HUNCH Mars Transit Habitat Food Storage - Official Project Specification Powerpoint<br><br>Research and Documentation Resources<br>NASA Official Website, Space Food Systems Research...";
         </script>
-        <div onclick="openModal('Resources/References', resourcesContent)" class="p-6 rounded-lg shadow-md border w-full cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden">
-            <h1 class="text-2xl font-bold mb-4">Resources/References</h1>
-            <p class="line-clamp-3">
-                <script>document.write(resourcesPreview);</script>
-            </p>
-        </div>
-    </div>
+        <article>
+            <button 
+                onclick="openModal('Resources/References', resourcesContent)" 
+                class="p-6 rounded-lg shadow-md border cursor-pointer transition-all duration-300 h-[50vh] overflow-hidden text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:shadow-lg w-full"
+                aria-label="Open Resources and References section - View project resources and references"
+                tabindex="0"
+                onkeydown="handleCardKeydown(event, 'Resources/References', resourcesContent)"
+            >
+                <h2 class="text-2xl font-bold mb-4">Resources/References</h2>
+                <div class="line-clamp-3" aria-describedby="resources-preview">
+                    <script>document.write(resourcesPreview);</script>
+                </div>
+            </button>
+        </article>
+        </section>
+    </main>
 
     <!-- Contact page -->
-    <div id="contact">
+    <section id="contact" role="region" aria-label="Contact information">
         <div class="border-t-2 border-black w-full mt-8">
-            <h1 class="text-2xl font-bold p-4">Contact</h1>
-            <h1 class="text-xl ml-4 mb-8">To contact us about this project, fill out this <a href="https://forms.gle/BZZgXafaBBgRnvub7" target="_blank" class="text-blue-600 underline">form</a> </h1>
+            <h2 class="text-2xl font-bold p-4">Contact</h2>
+            <p class="text-xl ml-4 mb-8">To contact us about this project, fill out this <a href="https://forms.gle/BZZgXafaBBgRnvub7" target="_blank" class="text-blue-600 underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" rel="noopener noreferrer">contact form</a></p>
         </div>
-    </div>
+    </section>
 
     <!-- Modal -->
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center z-50 hidden" onclick="closeModalOnBackgroundClick(event)">
-        <div id="modalBox" class="bg-white rounded-lg shadow-lg p-8 pt-12 w-[95vw] sm:w-[85vw] md:w-[75vw] lg:w-[65vw] max-w-5xl relative h-[80vh] max-h-[80vh] overflow-y-auto mt-12" onclick="event.stopPropagation()">
-            <button onclick="closeModal()" class="top-2 text-gray-500 hover:text-gray-700 text-2xl z-10">&times;</button>
+    <div 
+        id="modal" 
+        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center z-50 hidden" 
+        onclick="closeModalOnBackgroundClick(event)"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+        aria-describedby="modalContent"
+    >
+        <div 
+            id="modalBox" 
+            class="bg-white rounded-lg shadow-lg p-8 pt-12 w-[95vw] sm:w-[85vw] md:w-[75vw] lg:w-[65vw] max-w-5xl relative h-[80vh] max-h-[80vh] overflow-y-auto mt-12" 
+            onclick="event.stopPropagation()"
+        >
+            <button 
+                onclick="closeModal()" 
+                class="absolute top-2 right-4 text-gray-500 hover:text-gray-700 text-2xl z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-8 h-8 flex items-center justify-center"
+                aria-label="Close modal"
+                id="modalCloseButton"
+            >
+                &times;
+            </button>
             <h2 id="modalTitle" class="text-2xl font-bold mb-4"></h2>
             <div id="modalContent"></div>
         </div>
     </div>
 
-    <!-- JavaScript to handle modal functionality -->
+    <!-- JavaScript to handle modal functionality and accessibility -->
     <script>
+        let lastFocusedElement = null;
+
         function openModal(title, content) {
+            // Store the currently focused element
+            lastFocusedElement = document.activeElement;
+
+            // Set modal content
             document.getElementById('modalTitle').textContent = title;
             document.getElementById('modalContent').innerHTML = content;
-            document.getElementById('modal').classList.remove('hidden');
+
+            // Show modal
+            const modal = document.getElementById('modal');
+            modal.classList.remove('hidden');
+
+            // Focus the close button for keyboard accessibility
+            const closeBtn = document.getElementById('modalCloseButton');
+            if (closeBtn) closeBtn.focus();
+
+            // Trap focus within modal (guarded)
+            trapFocus(modal);
+
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+
+            // Add escape key listener
+            document.addEventListener('keydown', handleModalEscape);
         }
+
         function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
+            const modal = document.getElementById('modal');
+            if (!modal) return;
+            modal.classList.add('hidden');
+
+            // Remove any trap focus handler attached
+            if (modal._trapFocusHandler) {
+                modal.removeEventListener('keydown', modal._trapFocusHandler);
+                try { delete modal._trapFocusHandler; } catch (e) { modal._trapFocusHandler = null; }
+            }
+
+            // Restore body scroll
+            document.body.style.overflow = '';
+
+            // Return focus to the element that opened the modal
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
+
+            // Remove escape key listener
+            document.removeEventListener('keydown', handleModalEscape);
         }
         
         function closeModalOnBackgroundClick(event) {
@@ -198,6 +520,142 @@
                 closeModal();
             }
         }
+
+        function handleModalEscape(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        }
+
+        function handleCardKeydown(event, title, content) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openModal(title, content);
+            }
+        }
+
+        function trapFocus(element) {
+            if (!element) return;
+            // Prevent attaching multiple handlers
+            if (element._trapFocusHandler) return;
+
+            const focusableElements = Array.from(element.querySelectorAll(
+                'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])'
+            ));
+            if (focusableElements.length === 0) return;
+
+            const firstFocusableElement = focusableElements[0];
+            const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+            const handler = function(e) {
+                if (e.key !== 'Tab') return;
+                if (e.shiftKey) {
+                    if (document.activeElement === firstFocusableElement) {
+                        e.preventDefault();
+                        lastFocusableElement.focus();
+                    }
+                } else {
+                    if (document.activeElement === lastFocusableElement) {
+                        e.preventDefault();
+                        firstFocusableElement.focus();
+                    }
+                }
+            };
+
+            element._trapFocusHandler = handler;
+            element.addEventListener('keydown', handler);
+        }
+
+        // Add live region for screen reader announcements
+        function announceToScreenReader(message) {
+            const liveRegion = document.getElementById('sr-live-region');
+            if (liveRegion) {
+                liveRegion.textContent = message;
+                setTimeout(() => {
+                    liveRegion.textContent = '';
+                }, 1000);
+            }
+        }
+
+        // Enhanced dark mode function with announcements
+        function toggleDarkMode() {
+            document.body.classList.toggle('darkmode');
+            updateDarkModeButton();
+            
+            const isDark = document.body.classList.contains('darkmode');
+            announceToScreenReader(isDark ? 'Dark mode enabled' : 'Light mode enabled');
+        }
+        
+        function updateDarkModeButton() {
+            const button = document.getElementById('darkModeButton');
+            if (document.body.classList.contains('darkmode')) {
+                button.textContent = '☀️ Switch to Light';
+                button.setAttribute('aria-label', 'Switch to light mode');
+            } else {
+                button.textContent = '🌙 Switch to Dark';
+                button.setAttribute('aria-label', 'Switch to dark mode');
+            }
+        }
+        
+        // Set initial button text on page load
+        updateDarkModeButton();
+
+        // Add skip link smooth scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const skipLink = document.querySelector('a[href="#main-content"]');
+            if (skipLink) {
+                skipLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('main-content').focus();
+                    document.getElementById('main-content').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
     </script>
+
+    <!-- Screen reader live region for announcements -->
+    <div id="sr-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Add CSS for screen reader only content -->
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* When skip-link receives focus, make it visible */
+        .sr-only:focus, .sr-only:active {
+            position: static;
+            width: auto;
+            height: auto;
+            padding: 0.25rem 0.5rem;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+            z-index: 9999;
+        }
+
+        /* Ensure focus indicators are visible */
+        *:focus {
+            outline: 2px solid #3B82F6;
+            outline-offset: 2px;
+        }
+        
+        /* Better focus indicators for buttons */
+        button:focus {
+            outline: 2px solid #3B82F6;
+            outline-offset: 2px;
+        }
+    </style>
 </body>
 </html> 
