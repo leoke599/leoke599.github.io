@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | NASA HUNCH Project</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <main class="max-w-md mx-auto mt-20 p-6 bg-white shadow-lg rounded-2xl">
+    <h1 class="text-2xl font-bold mb-4 text-center">Contact Us</h1>
+
+    <form id="contact" action="/api/contact" method="POST" class="flex flex-col gap-4">
+      <label class="flex flex-col">
+        Name:
+        <input type="text" name="name" required maxlength="80" class="border p-2 rounded-md" />
+      </label>
+
+      <label class="flex flex-col">
+        Email:
+        <input type="email" name="email" required maxlength="120" class="border p-2 rounded-md" />
+      </label>
+
+      <label class="flex flex-col">
+        Message:
+        <textarea name="message" required maxlength="5000" rows="5" class="border p-2 rounded-md"></textarea>
+      </label>
+
+      <!-- 🧠 Cloudflare Turnstile widget -->
+      <div class="cf-turnstile self-center" data-sitekey="0x4AAAAAAB86w4VDNVovRyC5"></div>
+
+      <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
+        Send Message
+      </button>
+    </form>
+  </main>
+
+  <!-- ⚙️ Cloudflare Turnstile script -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</body>
+</html>
