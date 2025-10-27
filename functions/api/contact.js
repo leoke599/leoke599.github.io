@@ -1,11 +1,10 @@
-// functions/api/contact.js
-
+// Reject accidental GETs cleanly (so /api/contact in the browser isn't "Server error")
 export const onRequestGet = async () =>
   new Response("Method Not Allowed", { status: 405 });
 
 export const onRequestPost = async ({ request, env }) => {
   try {
-    // Read form
+    // --- read form ---
     const form = await request.formData();
     const name = (form.get("name") || "").toString().trim();
     const email = (form.get("email") || "").toString().trim();
@@ -16,7 +15,7 @@ export const onRequestPost = async ({ request, env }) => {
       return new Response("Missing fields", { status: 400 });
     }
 
-    // Turnstile verify
+    // --- verify Turnstile ---
     const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
       method: "POST",
       headers: { "content-type": "application/x-www-form-urlencoded" },
@@ -28,17 +27,12 @@ export const onRequestPost = async ({ request, env }) => {
     });
 
     let verify;
-    try {
-      verify = await verifyRes.json();
-    } catch {
-      return new Response("Turnstile error", { status: 502 });
-    }
+    try { verify = await verifyRes.json(); }
+    catch { return new Response("Turnstile error", { status: 502 }); }
 
-    if (!verify?.success) {
-      return new Response("Turnstile failed", { status: 400 });
-    }
+    if (!verify?.success) return new Response("Turnstile failed", { status: 400 });
 
-    // Send via SendGrid
+    // --- send via SendGrid ---
     const subject = `New message from ${name}`;
     const text = `From: ${name} <${email}>\n\n${message}`;
 
@@ -50,7 +44,7 @@ export const onRequestPost = async ({ request, env }) => {
       },
       body: JSON.stringify({
         personalizations: [{ to: [{ email: env.TO_EMAIL }] }],
-        from: { email: env.FROM_EMAIL, name: "Contact Form" }, // must be your verified Single Sender
+        from: { email: env.FROM_EMAIL, name: "Contact Form" }, // must match your verified Single Sender
         reply_to: { email, name },
         subject,
         content: [{ type: "text/plain", value: text }],
@@ -59,17 +53,15 @@ export const onRequestPost = async ({ request, env }) => {
 
     if (!sgRes.ok) {
       const detail = await sgRes.text();
-      // Return a readable error (so you don't see 1101)
       return new Response(`SendGrid error: ${detail}`, { status: 502 });
     }
 
-    // Success — either redirect or inline “OK” page
-    return Response.redirect("/contact-success.html", 303);
-    // If you’d rather render inline success instead of redirect, use:
-    // return new Response("<h1>Thanks!</h1><p>Your message was sent.</p>", { headers: { "content-type": "text/html" } });
-
-  } catch (err) {
-    // Final safety net: return a controlled 500 instead of throwing
+    // --- success: use an explicit 303 Location header (most reliable) ---
+    return new Response(null, {
+      status: 303,
+      headers: { Location: "/contact-success.html" },
+    });
+  } catch {
     return new Response("Server error", { status: 500 });
   }
 };
