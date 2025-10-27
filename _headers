@@ -1,8 +1,8 @@
-/*
-  Content-Security-Policy: default-src 'self';
-  form-action 'self';
-  connect-src 'self' https://api.sendgrid.com https://challenges.cloudflare.com;
-  script-src 'self' https://challenges.cloudflare.com 'unsafe-inline';
-  frame-src https://challenges.cloudflare.com;
-  style-src 'self' 'unsafe-inline';
-  img-src 'self' data:;
+/contact.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self';
+    connect-src 'self' https://api.sendgrid.com https://challenges.cloudflare.com;
+    script-src 'self' https://challenges.cloudflare.com 'unsafe-inline';
+    frame-src https://challenges.cloudflare.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    img-src 'self' data: blob:;
+    font-src 'self' https://fonts.gstatic.com data:;
