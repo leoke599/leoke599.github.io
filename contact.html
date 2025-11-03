@@ -4,31 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us | NASA HUNCH Project</title>
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css">
+  <style>
+    body {
+      background: #f9fafb; /* very light gray background */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    main {
+      backdrop-filter: blur(6px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    main:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #9ca3af; /* subtle neutral gray */
+      box-shadow: 0 0 0 2px rgba(156, 163, 175, 0.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    form { animation: fadeIn 0.4s ease-out; }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
-  <main class="max-w-md mx-auto mt-20 p-6 bg-white shadow-lg rounded-2xl">
-    <h1 class="text-2xl font-bold mb-4 text-center">Contact Us</h1>
+
+<body class="text-gray-800">
+  <main class="max-w-md w-full mx-auto p-8 bg-white rounded-2xl shadow-sm border border-gray-200">
+    <h1 class="text-3xl font-bold mb-2 text-center text-gray-800">Contact Us</h1>
+    <p class="text-center text-gray-500 mb-6">Have a question or feedback about our NASA HUNCH project? Let us know.</p>
 
     <form id="contact" action="/api/contact" method="POST" class="flex flex-col gap-4">
-      <label class="flex flex-col">
-        Name:
-        <input type="text" name="name" required maxlength="80" class="border p-2 rounded-md" autocomplete="name" />
+      <label class="flex flex-col text-sm font-medium text-gray-700">
+        Name
+        <input type="text" name="name" required maxlength="80"
+          class="border border-gray-300 mt-1 p-2 rounded-md focus:ring-1 focus:ring-gray-400 transition" />
       </label>
 
-      <label class="flex flex-col">
-        Email:
-        <input type="email" name="email" required maxlength="120" class="border p-2 rounded-md" autocomplete="email" />
+      <label class="flex flex-col text-sm font-medium text-gray-700">
+        Email
+        <input type="email" name="email" required maxlength="120"
+          class="border border-gray-300 mt-1 p-2 rounded-md focus:ring-1 focus:ring-gray-400 transition" />
       </label>
 
-      <label class="flex flex-col">
-        Message:
-        <textarea name="message" required maxlength="5000" rows="5" class="border p-2 rounded-md"></textarea>
+      <label class="flex flex-col text-sm font-medium text-gray-700">
+        Message
+        <textarea name="message" required maxlength="5000" rows="5"
+          class="border border-gray-300 mt-1 p-2 rounded-md focus:ring-1 focus:ring-gray-400 transition"></textarea>
       </label>
 
-      <!-- 🧠 Cloudflare Turnstile widget -->
+      <!-- Cloudflare Turnstile widget -->
       <div
-        class="cf-turnstile self-center"
+        class="cf-turnstile self-center mt-2"
         data-sitekey="0x4AAAAAAB86w4VDNVovRyC5"
         data-appearance="always"
         data-callback="tsOk"
@@ -37,28 +74,26 @@
       </div>
 
       <!-- Failsafe warning -->
-      <div id="captcha-warning" style="display:none; color:red; margin-top:1em; text-align:center;">
+      <div id="captcha-warning" class="hidden text-red-600 text-center text-sm font-medium mt-2">
         ⚠️ CAPTCHA failed to load. Try another network or browser.
       </div>
 
       <button id="sendBtn" type="submit"
-        class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition disabled:opacity-50">
+        class="bg-gray-900 text-white py-2.5 px-4 rounded-md font-medium hover:bg-gray-800 focus:ring-2 focus:ring-gray-400 disabled:opacity-50 transition">
         Send Message
       </button>
     </form>
   </main>
 
-  <!-- ⚙️ Cloudflare Turnstile script -->
+  <!-- Cloudflare Turnstile -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <noscript>
-    <p style="color:red; text-align:center; margin-top:1em;">
-      ⚠️ Please enable JavaScript to view the CAPTCHA and submit this form.
-    </p>
+    <p class="text-red-600 text-center mt-4">⚠️ Please enable JavaScript to view the CAPTCHA and submit this form.</p>
   </noscript>
 
   <script>
-    // Disable the button during submission to prevent double sends
+    // Disable send button while submitting
     const form = document.getElementById('contact');
     const btn = document.getElementById('sendBtn');
     form.addEventListener('submit', () => {
@@ -69,19 +104,19 @@
     // Turnstile callbacks
     window.tsOk = function () {
       const warn = document.getElementById('captcha-warning');
-      if (warn) warn.style.display = 'none';
+      if (warn) warn.classList.add('hidden');
     };
     window.tsErr = function () {
       const warn = document.getElementById('captcha-warning');
-      if (warn) warn.style.display = 'block';
+      if (warn) warn.classList.remove('hidden');
     };
 
-    // Final fallback if Turnstile never loads at all (blocked network)
+    // Fallback if Turnstile never loads (blocked by network)
     window.addEventListener('load', () => {
       setTimeout(() => {
         if (!window.turnstile) {
           const warn = document.getElementById('captcha-warning');
-          if (warn) warn.style.display = 'block';
+          if (warn) warn.classList.remove('hidden');
         }
       }, 6000);
     });
