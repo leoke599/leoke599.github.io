@@ -37,5 +37,20 @@
 
   <!-- ⚙️ Cloudflare Turnstile script -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <!-- Failsafe in case Turnstile doesn't load -->
+  <noscript>
+    <p style="color:red;">⚠️ Please enable JavaScript to view the CAPTCHA and submit this form.</p>
+  </noscript>
+  <div id="captcha-warning" style="display:none; color:red; margin-top:1em;">
+    ⚠️ CAPTCHA failed to load. Try another network or browser.
+  </div>
+  <script>
+    setTimeout(() => {
+      const widget = document.querySelector('.cf-turnstile iframe');
+      if (!widget) document.getElementById('captcha-warning').style.display = 'block';
+    }, 3000);
+  </script>
+
 </body>
 </html>

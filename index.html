@@ -251,19 +251,6 @@
                     </ul>
                     <p>This phase makes the entire web app more intuitive and user friendly by giving alerts for concerning things, customization options, and a working check-in and check-out system into the web application directly.</p>
                 </div>
-
-                <div class="border-l-4 border-pink-500 pl-4 mb-6">
-                    <h4 class="text-lg font-semibold mb-2">October 17, 2025 - Enhanced graphs</h4>
-                    <p class="text-sm text-gray-600 mb-2"><strong>Milestone:</strong> Add Additional Features</p>
-                    <p><strong>Enhanced Check-in/Check-out Functionality, Food Expiration Alerts, Sensor Reading Alerts, and Personalization:</strong></p>
-                    <p>Implemented check-in and check-out system into the web app, dark mode/light mode, and a panel to check for concerning readings from sensors and food expiration alerts:</p>
-                    <ul class="list-disc list-inside mt-2 mb-3 ml-4">
-                        <li><strong>Inventory Enhancements:</strong> Implementation of the check-in and check-out system into the web app</li>
-                        <li><strong>Upgraded Dashboard:</strong> Dashboard now displays alerts for expiring and near-expiring items and concerning sensor readings</li>
-                        <li><strong>Added Personalization:</strong> Added light mode and dark mode</li>
-                    </ul>
-                    <p>This phase makes the entire web app more intuitive and user friendly by giving alerts for concerning things, customization options, and a working check-in and check-out system into the web application directly.</p>
-                </div>
                 
                 <div class="border-l-4 border-yellow-500 pl-4 mb-6">
                     <h4 class="text-lg font-semibold mb-2">October 17, 2025 - Data Visualization & Background Processing Enhancements</h4>
@@ -277,6 +264,19 @@
                         <li><strong>Enhanced Settings Interface:</strong> Expanded settings page beyond dark/light mode toggle to include temperature threshold configuration and alarm parameters (UI framework established for full functionality implementation)</li>
                     </ul>
                     <p>This phase significantly improves system reliability and data collection consistency by ensuring continuous monitoring regardless of user interaction, while optimizing storage usage and preparing for advanced user customization capabilities.</p>
+                </div>
+
+                <div class="border-l-4 border-pink-500 pl-4 mb-6">
+                    <h4 class="text-lg font-semibold mb-2">October 31, 2025 - Hardware Integration & Real-Time Sensor Data</h4>
+                    <p class="text-sm text-gray-600 mb-2"><strong>Milestone:</strong> Hardware Communication & Enhanced User Configuration</p>
+                    <p><strong>Temperature Sensor Integration With Arduino and Raspberry Pi Deployment:</strong></p>
+                    <p>Established complete hardware-to-software integration pipeline and deployed the system on space-grade hardware platform:</p>
+                    <ul class="list-disc list-inside mt-2 mb-3 ml-4">
+                        <li><strong>Real Temperature Monitoring:</strong> Connected temperature sensor to Arduino and integrated it with the backend, replacing placeholder values with actual real-time temperature readings displayed on the dashboard</li>
+                        <li><strong>Enhanced Settings Configuration:</strong> Implemented user-friendly temperature threshold configuration in the settings page, allowing astronauts to adjust optimal temperature ranges without modifying code directly</li>
+                        <li><strong>Raspberry Pi Deployment:</strong> Deployed entire software system on Raspberry Pi to demonstrate lightweight, space-grade hardware compatibility and power efficiency—critical for mission constraints where Raspberry Pis are commonly used in space applications due to their low power consumption relative to full computers</li>
+                    </ul>
+                    <p>This phase transforms the system from a software prototype to a functional hardware-integrated solution with real sensor data, astronaut-friendly configuration controls, and deployment on power-efficient, space-proven hardware platforms suitable for Mars habitat operations.</p>
                 </div>
                 
                 <h3 class="text-xl font-semibold mb-3 mt-6">Next Development Phases</h3>
@@ -429,6 +429,35 @@
                         <p class="font-semibold mb-2">Expanded Settings Interface with Temperature Configuration:</p>
                         <img src="src/2025-10-17-settings.png" class="w-full mb-2 border rounded" alt="Enhanced settings page interface showing temperature threshold configuration and alarm parameters beyond basic dark/light mode toggle">
                         <p class="text-sm text-gray-600">Expanded settings page beyond dark/light mode to include temperature threshold configuration and alarm parameters (UI framework established for full functionality implementation).</p>
+                    </div>
+                </div>
+
+                <div class="border-l-4 border-pink-500 pl-4 mb-6">
+                    <h4 class="text-lg font-semibold mb-3">October 31, 2025 - Hardware Integration & Real-Time Sensor Data</h4>
+                    <p class="mb-4">Established complete hardware-to-software integration with Arduino temperature sensors, enhanced user-friendly settings configuration, and deployed system on Raspberry Pi for space-grade power efficiency.</p>
+                    
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">Arduino Temperature Sensor Integration:</p>
+                        <img src="src/2025-10-31-arduino-sensor.png" class="w-full mb-2 border rounded" alt="Arduino temperature sensor hardware setup showing physical connection and integration with the monitoring system">
+                        <p class="text-sm text-gray-600">Physical Arduino temperature sensor connected to the backend system, replacing placeholder values with real-time temperature readings displayed on the dashboard.</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">Real-Time Temperature Data Display:</p>
+                        <img src="src/2025-10-31-real-temperature.png" class="w-full mb-2 border rounded" alt="Dashboard showing real-time temperature readings from the Arduino sensor instead of placeholder values">
+                        <p class="text-sm text-gray-600">Dashboard displaying actual real-time temperature data from the integrated Arduino sensor, demonstrating successful hardware-to-software communication.</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">Enhanced Temperature Settings Configuration:</p>
+                        <img src="src/2025-10-31-settings-config.png" class="w-full mb-2 border rounded" alt="Settings page interface showing user-friendly temperature threshold configuration controls accessible to astronauts without code modification">
+                        <p class="text-sm text-gray-600">Improved settings page allowing astronauts to configure optimal temperature ranges directly through the interface without modifying code, enhancing user-friendliness for non-technical crew members.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <p class="font-semibold mb-2">Raspberry Pi System Deployment:</p>
+                        <img src="src/2025-10-31-raspberry-pi.png" class="w-full mb-2 border rounded" alt="Raspberry Pi hardware setup running the complete space freezer monitoring system demonstrating lightweight and power-efficient deployment">
+                        <p class="text-sm text-gray-600">Complete system deployed on Raspberry Pi, showcasing space-grade hardware compatibility and power-efficient operation suitable for Mars habitat constraints where low power consumption is critical.</p>
                     </div>
                 </div>
                 
