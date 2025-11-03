@@ -13,12 +13,12 @@
     <form id="contact" action="/api/contact" method="POST" class="flex flex-col gap-4">
       <label class="flex flex-col">
         Name:
-        <input type="text" name="name" required maxlength="80" class="border p-2 rounded-md" />
+        <input type="text" name="name" required maxlength="80" class="border p-2 rounded-md" autocomplete="name" />
       </label>
 
       <label class="flex flex-col">
         Email:
-        <input type="email" name="email" required maxlength="120" class="border p-2 rounded-md" />
+        <input type="email" name="email" required maxlength="120" class="border p-2 rounded-md" autocomplete="email" />
       </label>
 
       <label class="flex flex-col">
@@ -27,14 +27,22 @@
       </label>
 
       <!-- 🧠 Cloudflare Turnstile widget -->
-      <div class="cf-turnstile self-center" data-sitekey="0x4AAAAAAB86w4VDNVovRyC5"></div>
+      <div
+        class="cf-turnstile self-center"
+        data-sitekey="0x4AAAAAAB86w4VDNVovRyC5"
+        data-appearance="always"
+        data-callback="tsOk"
+        data-error-callback="tsErr"
+        data-timeout-callback="tsErr">
+      </div>
 
       <!-- Failsafe warning -->
       <div id="captcha-warning" style="display:none; color:red; margin-top:1em; text-align:center;">
         ⚠️ CAPTCHA failed to load. Try another network or browser.
       </div>
 
-      <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
+      <button id="sendBtn" type="submit"
+        class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition disabled:opacity-50">
         Send Message
       </button>
     </form>
@@ -44,23 +52,39 @@
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <noscript>
-    <p style="color:red; text-align:center;">
+    <p style="color:red; text-align:center; margin-top:1em;">
       ⚠️ Please enable JavaScript to view the CAPTCHA and submit this form.
     </p>
   </noscript>
 
   <script>
-    // Check 5 seconds after load to see if the Turnstile iframe appeared
-    window.addEventListener("load", () => {
+    // Disable the button during submission to prevent double sends
+    const form = document.getElementById('contact');
+    const btn = document.getElementById('sendBtn');
+    form.addEventListener('submit', () => {
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+    });
+
+    // Turnstile callbacks
+    window.tsOk = function () {
+      const warn = document.getElementById('captcha-warning');
+      if (warn) warn.style.display = 'none';
+    };
+    window.tsErr = function () {
+      const warn = document.getElementById('captcha-warning');
+      if (warn) warn.style.display = 'block';
+    };
+
+    // Final fallback if Turnstile never loads at all (blocked network)
+    window.addEventListener('load', () => {
       setTimeout(() => {
-        const widget = document.querySelector(".cf-turnstile iframe");
-        if (!widget) {
-          document.getElementById("captcha-warning").style.display = "block";
+        if (!window.turnstile) {
+          const warn = document.getElementById('captcha-warning');
+          if (warn) warn.style.display = 'block';
         }
-      }, 5000);
+      }, 6000);
     });
   </script>
-
-
 </body>
 </html>
