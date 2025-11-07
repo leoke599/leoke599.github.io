@@ -278,6 +278,19 @@
                     </ul>
                     <p>This phase transforms the system from a software prototype to a functional hardware-integrated solution with real sensor data, astronaut-friendly configuration controls, and deployment on power-efficient, space-proven hardware platforms suitable for Mars habitat operations.</p>
                 </div>
+
+                <div class="border-l-4 border-indigo-500 pl-4 mb-6">
+                    <h4 class="text-lg font-semibold mb-2">November 7, 2025 - Advanced Inventory Management & Sensor Diagnostics</h4>
+                    <p class="text-sm text-gray-600 mb-2"><strong>Milestone:</strong> Enhanced Search Capabilities, Fault Detection, and Nutrition Tracking</p>
+                    <p><strong>Inventory Search Filter, Temperature Sensor Fault Detection, and Nutrition Dashboard:</strong></p>
+                    <p>Implemented advanced inventory search capabilities, comprehensive sensor fault detection system, and mission-critical nutrition tracking for crew dietary management:</p>
+                    <ul class="list-disc list-inside mt-2 mb-3 ml-4">
+                        <li><strong>Inventory Search & Filter System:</strong> Developed comprehensive search functionality allowing crew to filter inventory by item name, storage location, or item code, with intelligent sorting options to display expired items, items about to expire, items in good condition, or all items simultaneously for efficient inventory management</li>
+                        <li><strong>Temperature Sensor Fault Detection:</strong> Implemented automatic fault detection system that identifies DS18B20 sensor connection issues (detecting the default -127.00°C reading indicating improper connection), provides persistent on-page sensor status indicators, and alerts crew when no readings have been received for more than 5 minutes—ensuring mission-critical temperature monitoring reliability</li>
+                        <li><strong>Nutrition Dashboard & Tracking:</strong> Created dedicated nutrition management system that calculates remaining food supply duration based on crew size, mission length, and nutritional requirements per person, with optional nutrition information input in the inventory system and real-time editable settings for crew size, mission days, and dietary needs per astronaut</li>
+                    </ul>
+                    <p>This phase significantly enhances mission safety and crew health management by providing intelligent inventory search capabilities for rapid food location, proactive sensor fault detection to prevent monitoring failures, and comprehensive nutrition tracking to ensure adequate food supplies throughout the Mars transit mission duration.</p>
+                </div>
                 
                 <h3 class="text-xl font-semibold mb-3 mt-6">Next Development Phases</h3>
                 <p>Upcoming development will focus on hardware integration, environmental testing protocols, and system optimization for the extreme conditions of space operation. Future updates will include physical prototype testing, thermal system validation, and comprehensive safety system implementation.</p>
@@ -461,6 +474,33 @@
                         <p class="font-semibold mb-2">Raspberry Pi System Deployment:</p>
                         <img src="src/2025-10-31-raspberrypi.jpg" class="w-full mb-2 border rounded" alt="Raspberry Pi hardware setup running the complete space freezer monitoring system demonstrating lightweight and power-efficient deployment">
                         <p class="text-sm text-gray-600">Complete system deployed on Raspberry Pi, showcasing space-grade hardware compatibility and power-efficient operation suitable for Mars habitat constraints where low power consumption is critical.</p>
+                    </div>
+                </div>
+
+                <div class="border-l-4 border-indigo-500 pl-4 mb-6">
+                    <h4 class="text-lg font-semibold mb-3">November 7, 2025 - Advanced Inventory Management & Sensor Diagnostics</h4>
+                    <p class="mb-4">Implemented advanced inventory search and filtering capabilities, comprehensive temperature sensor fault detection system, and mission-critical nutrition tracking dashboard for crew dietary management.</p>
+                    
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">Inventory Search & Filter System:</p>
+                        <img src="src/2025-11-7-inventory-search.png" class="w-full mb-2 border rounded" alt="Enhanced inventory interface showing comprehensive search functionality with filters for item name, location, and item code, plus sorting options for expiration status">
+                        <p class="text-sm text-gray-600">Advanced inventory search system allowing crew to filter by item name, storage location, or item code, with intelligent sorting to display expired, about-to-expire, okay, or all items for efficient food management.</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <p class="font-semibold mb-2">Temperature Sensor Fault Detection System:</p>
+                        <img src="src/2025-11-7-sensor-fault-red.png" class="w-full mb-2 border rounded" alt="Temperature monitoring page displaying sensor fault detection with warnings for DS18B20 connection issues and persistent sensor status indicators">
+                        <p class="text-sm text-gray-600">Automatic fault detection system identifying DS18B20 sensor connection problems (detecting -127.00°C default reading), showing persistent sensor status, and alerting crew when no readings received for 5+ minutes.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <p class="font-semibold mb-2">Nutrition Dashboard & Tracking System:</p>
+                        <video controls class="w-full mb-2 border rounded" aria-label="Video demonstration of the nutrition dashboard showing food supply duration calculations and real-time settings configuration" aria-describedby="video-nutrition-desc">
+                            <source src="src/2025-11-7-nutrition-dashboard.webm" type="video/webm">
+                            Your browser does not support the video tag. This video demonstrates the nutrition tracking system with crew size, mission duration, and dietary requirements configuration.
+                        </video>
+                        <div id="video-nutrition-desc" class="sr-only">Video shows the nutrition dashboard calculating remaining food supply duration based on crew size, mission length, and nutritional requirements per person, with real-time editable settings and optional nutrition information input.</div>
+                        <p class="text-sm text-gray-600">Comprehensive nutrition management system calculating food supply duration based on crew size, mission days, and nutritional needs per astronaut, with optional nutrition data entry in inventory and real-time configuration settings.</p>
                     </div>
                 </div>
                 
